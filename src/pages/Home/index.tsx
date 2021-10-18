@@ -3,9 +3,7 @@ import TopBanner from "./Sections/TopBanner";
 import imageOne from "./../../assets/images/image1.png";
 import { ReactComponent as NextArrow } from "./../../assets/images/next-arrow.svg";
 import { Link } from "react-router-dom";
-import DarkMode from "../../hooks/context/DarkModeContext";
 const Home: React.FunctionComponent = () => {
-  const darkMode = React.useContext(DarkMode);
 
   return (
     <>
