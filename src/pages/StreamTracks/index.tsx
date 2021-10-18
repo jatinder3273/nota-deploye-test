@@ -3,20 +3,23 @@ import imageOne from "./../../assets/images/active-music.png";
 import MusicOne from "./../../assets/images/music-1.png";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
+import DarkMode from "../../hooks/context/DarkModeContext";
 const StreamTracks = () => {
+
+  const darkMode = React.useContext(DarkMode);
   const [isActive, setToggleMusicList] = useState(false);
   const SAMPLE_MP3_URL = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
   return (
-    <section className="main-content">
+    <section className={`main-content ${darkMode ? "dark-mode" : ""}`}>
       <div className="container">
         <div className="row">
           <div className="row">
             <div className="col-lg-5 order-lg-1 order-2">
               <div className="info pt-0 p-4">
                 <div className="accordion" id="accordionPanelsStayOpenExample">
-                  <div className="accordion-item">
+                  <div className={`accordion-item ${darkMode ? "dark-mode" : ""}`}>
                     <button
-                      className={`py-2 accordion-button ${isActive ? "" : "collapsed"}`}
+                      className={`py-2 accordion-button ${isActive ? "" : "collapsed"} ${darkMode ? "dark-mode text-white" : ""}`}
                       type="button"
                       onClick={() => setToggleMusicList(!isActive)}
                       data-bs-toggle="collapse"
@@ -24,7 +27,7 @@ const StreamTracks = () => {
                       aria-expanded="true"
                       aria-controls="panelsStayOpen-collapseOne"
                     >
-                      <b>Owned Songs</b>
+                      Owned Songs
                     </button>
                     <div
                       id="panelsStayOpen-collapseOne"
@@ -34,7 +37,7 @@ const StreamTracks = () => {
                       <div className="accordion-body">
                         <ol className="list-group">
                           {[...Array(10)].map((item, key) => (
-                            <li className="list-group-item d-flex p-0 mb-2" key={key}>
+                            <li className={`list-group-item d-flex p-0 mb-2 ${darkMode ? "dark-mode-light" : ""}`} key={key}>
                               <img src={MusicOne} alt="" width="50" height="50" />
                               <div className="ms-2 me-auto">
                                 <p className="fw-bold mb-0">Thinking Out Loud</p>
@@ -49,17 +52,6 @@ const StreamTracks = () => {
                               </span>
                             </li>
                           ))}
-
-                          <li className="list-group-item d-flex p-0 mb-2">
-                            <img src={MusicOne} alt="" width="50" height="50" />
-                            <div className="ms-2 me-auto">
-                              <p className="fw-bold mb-0">Thinking Out Loud</p>
-                              <small className="time-duration">01:59</small>
-                            </div>
-                            <span className="icon">
-                              <i className="fa fa-play" aria-hidden="true" />
-                            </span>
-                          </li>
                         </ol>
                       </div>
                     </div>
@@ -67,8 +59,8 @@ const StreamTracks = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-7  order-lg-2 order-1 p-relative image-sec">
-              <h6>
+            <div className="col-lg-7  order-lg-2 order-1 p-relative image-sec mb-4">
+              <h6 className={` ${darkMode ? "text-white" : ""}`}>
                 <b>See You Again</b>
               </h6>
               <img src={imageOne} alt="" className="stream-track-active w-100 mb-3" />

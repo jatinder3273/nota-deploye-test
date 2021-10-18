@@ -1,9 +1,12 @@
 import React from "react";
+import DarkMode from "../../hooks/context/DarkModeContext";
 import imageOne from "./../../assets/images/detail.png";
 
 const Detail: React.FunctionComponent = () => {
+  const darkMode = React.useContext(DarkMode);
+
   return (
-    <section className="main-content">
+    <section className={`main-content ${darkMode ? 'text-white' : ''}`}>
       <div className="container">
         <div className="row">
           <div className="row">

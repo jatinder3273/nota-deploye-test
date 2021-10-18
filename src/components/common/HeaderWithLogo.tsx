@@ -3,7 +3,16 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "./../../assets/images/logo.png";
 import NavBar from "./NavBar";
-const HeaderWithLogo: React.FunctionComponent = () => {
+import Switch from "react-switch";
+import { ReactComponent as MoonIcon } from "./../../assets/images/moon.svg";
+import { ReactComponent as SunIcon } from "./../../assets/images/sun.svg";
+import DarkMode from "../../hooks/context/DarkModeContext";
+interface Props {
+  onDarkModeChange: () => void;
+  checked: boolean;
+}
+const HeaderWithLogo: React.FunctionComponent<Props> = ({ onDarkModeChange, checked }) => {
+  const darkMode = React.useContext(DarkMode);
   const [toggle, setToggle] = useState(false);
   const [scroll, setScroll] = useState(false);
   useEffect(() => {
@@ -31,10 +40,28 @@ const HeaderWithLogo: React.FunctionComponent = () => {
         >
           <i className="fa fa-bars" aria-hidden="true" />
         </button>
-        <div className={`navbar-collapse order-lg-2 order-4 collapse ${toggle ? "show" : "closed"}`} id="navbarText">
+        <div className={`navbar-collapse order-lg-2 order-4 collapse ${toggle ? "show" : "closed"}  ${darkMode ? "header-inner-dark-mode" : ""}`} id="navbarText">
           <NavBar />
+          <Switch
+            onChange={onDarkModeChange}
+            checked={checked}
+            className="align-middle me-4 d-lg-none"
+            checkedIcon={<MoonIcon width="22" />}
+            uncheckedIcon={<SunIcon />}
+            offColor="#636363"
+            onColor="#636363"
+          />
         </div>
-        <div className="right-content order-lg-3 order-3">
+        <div className="d-flex align-items-center right-content order-lg-3 order-3">
+          <Switch
+            onChange={onDarkModeChange}
+            checked={checked}
+            className="align-middle me-4 d-none d-sm-block"
+            checkedIcon={<MoonIcon width="22" />}
+            uncheckedIcon={<SunIcon />}
+            offColor="#636363"
+            onColor="#636363"
+          />
           <button className="btn btn-info btn-primary-custom">Connect Wallet</button>
         </div>
       </div>

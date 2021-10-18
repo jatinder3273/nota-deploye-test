@@ -28,6 +28,68 @@
 // Custom Css By Developer
 
 // Common Css Start
+
+.dark-mode-light {
+  background-color: #44474a !important;
+  *{
+    color: #fff !important;
+  }
+}
+.dark-mode {
+  background-color: #212529 !important;
+  .about-section{
+    background-color: #212529 !important;
+    p,h2{
+      color: #fff !important;
+    }
+  }
+  .navbar-toggler {
+    border: 2px solid transparent;
+    border-color: #fff !important;
+    color: #fff !important;
+    &:focus {
+      box-shadow: none;
+    }
+  }
+  .navbar-collapse{
+    &.show{
+      background-color: #212529;
+    }
+  }
+  .active-audio-player{
+    background-color: #212529 !important;
+    *{
+      color: #fff !important;
+    }
+    .play-pause-icon{
+      background-color: #212529 !important;
+      border: 0.5px solid #212529 !important;
+    }
+    svg path{
+      fill: #fff !important;
+    }
+  }
+  .header-inner-dark-mode{
+    a{
+      color: #fff !important;
+    }
+  }
+  .navbar-custom-with-logo {
+    &.open{
+      background-color: #212529 !important;
+    }
+  }
+  .bg-custom{
+    background-color: #212529 !important;
+  }
+  .text-white{
+    color: #fff !important;
+    p,h2{
+      color: #fff !important;
+    }
+  }
+}
+
 .active-audio-player {
   width: 70%;
   margin: 0 auto;
@@ -374,6 +436,7 @@ header {
     }
     p {
       font-size: 25px;
+      color: #fff;
       @media only screen and (max-width: 425px) {
         font-size: 15px;
       }

@@ -1,14 +1,16 @@
 import React from "react";
 import AboutImg from "../../assets/images/about.png";
 import PeraGraph from "../../components/PeraGraph";
+import DarkMode from "../../hooks/context/DarkModeContext";
 const About = () => {
+  const darkMode = React.useContext(DarkMode);
   return (
     <section className="main-content">
       <div className="container">
         <div className="row">
           <div className="col-10 mx-auto">
             <div className="banner-section text-center">
-              <h2 className="page-title">Nota - Decentralizing the Music Industry</h2>
+              <h2 className={`page-title ${darkMode ? "text-white" : ""}`}>Nota - Decentralizing the Music Industry</h2>
               <img src={AboutImg} alt="" className="image w-100" />
             </div>
           </div>
