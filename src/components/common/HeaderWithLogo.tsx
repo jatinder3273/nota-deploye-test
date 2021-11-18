@@ -9,17 +9,28 @@ import { ReactComponent as SunIcon } from "./../../assets/images/sun.svg";
 import DarkMode from "../../hooks/context/DarkModeContext";
 interface Props {
   onDarkModeChange: () => void;
+  handleOnConnect: () => void;
+  handleDisconnectWallet: () => void;
   checked: boolean;
+  walletIsConnected: boolean;
+  balance: number;
 }
-const HeaderWithLogo: React.FunctionComponent<Props> = ({ onDarkModeChange, checked }) => {
+const HeaderWithLogo: React.FunctionComponent<Props> = ({
+  onDarkModeChange,
+  handleOnConnect,
+  handleDisconnectWallet,
+  checked,
+  walletIsConnected,
+  balance
+}) => {
   const darkMode = React.useContext(DarkMode);
   const [toggle, setToggle] = useState(false);
   const [scroll, setScroll] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      setScroll(window.scrollY > 50);
+      setScroll(window.scrollY > 0);
     });
-    setScroll(window.scrollY > 50);
+    setScroll(window.scrollY > 0);
   }, []);
   return (
     <nav
@@ -40,7 +51,12 @@ const HeaderWithLogo: React.FunctionComponent<Props> = ({ onDarkModeChange, chec
         >
           <i className="fa fa-bars" aria-hidden="true" />
         </button>
-        <div className={`navbar-collapse order-lg-2 order-4 collapse ${toggle ? "show" : "closed"}  ${darkMode ? "header-inner-dark-mode" : ""}`} id="navbarText">
+        <div
+          className={`navbar-collapse order-lg-2 order-4 collapse ${toggle ? "show" : "closed"}  ${
+            darkMode ? "header-inner-dark-mode" : ""
+          }`}
+          id="navbarText"
+        >
           <NavBar />
           <Switch
             onChange={onDarkModeChange}
@@ -62,7 +78,15 @@ const HeaderWithLogo: React.FunctionComponent<Props> = ({ onDarkModeChange, chec
             offColor="#636363"
             onColor="#636363"
           />
-          <button className="btn btn-info btn-primary-custom">Connect Wallet</button>
+          {walletIsConnected ? (
+            <button onClick={handleDisconnectWallet} className="btn btn-info btn-primary-custom">
+              Disconnect
+            </button>
+          ) : (
+            <button onClick={handleOnConnect} className="btn btn-info btn-primary-custom">
+              Connect Wallet
+            </button>
+          )}
         </div>
       </div>
     </nav>

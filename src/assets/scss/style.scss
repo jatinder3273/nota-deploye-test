@@ -88,6 +88,12 @@
       color: #fff !important;
     }
   }
+  .accordion-button::after{
+    background-image: url('./../images/arrow-down-white.svg') !important;
+  }
+  .accordion-button:not(.collapsed)::after{
+    background-image: url('./../images/arrow-up-white.svg') !important;
+  }
 }
 
 .active-audio-player {

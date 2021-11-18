@@ -7,15 +7,26 @@ import { ReactComponent as MoonIcon } from "./../../assets/images/moon.svg";
 import { ReactComponent as SunIcon } from "./../../assets/images/sun.svg";
 interface Props {
   onDarkModeChange: () => void;
+  handleOnConnect: () => void;
+  handleDisconnectWallet: () => void;
   checked: boolean;
+  walletIsConnected: boolean;
+  balance: number;
 }
-const Header: React.FunctionComponent<Props> = ({ onDarkModeChange, checked }) => {
+const Header: React.FunctionComponent<Props> = ({
+  onDarkModeChange,
+  handleOnConnect,
+  handleDisconnectWallet,
+  checked,
+  walletIsConnected,
+  balance
+}) => {
   const darkMode = React.useContext(DarkMode);
   const [toggle, setToggle] = useState(false);
   const [scroll, setScroll] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      setScroll(window.scrollY > 50);
+      setScroll(window.scrollY > 0);
     });
   }, []);
   return (
@@ -47,7 +58,15 @@ const Header: React.FunctionComponent<Props> = ({ onDarkModeChange, checked }) =
           />
         </div>
         <div className="right-content">
-          <button className="btn btn-info btn-primary-custom">Connect Wallet</button>
+          {walletIsConnected ? (
+            <button onClick={handleDisconnectWallet} className="btn btn-info btn-primary-custom">
+              Disconnect
+            </button>
+          ) : (
+            <button onClick={handleOnConnect} className="btn btn-info btn-primary-custom">
+              Connect Wallet
+            </button>
+          )}
         </div>
       </div>
     </nav>
